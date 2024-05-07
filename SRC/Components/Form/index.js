@@ -8,7 +8,7 @@ export default function Form(){
     const [weight, setWeight] = useState(null)
     const [message, setMessage] = useState("preencha o peso e altura");
     const [imc, setImc] = useState(null)
-    const [textButton, setTextButton] = useState("Calcular IMC")
+    const [textButton, setTextButton] = useState("Calcular ")
 
      function imcCalcular(){
         return setImc((weight/(height*height)).toFixed(2))
@@ -23,7 +23,8 @@ export default function Form(){
             return
         }
         setImc(null)
-        setTextButton("Preencha o peso e altura ")
+        setTextButton("Calcular")
+        setMessage("Preencha o peso e altura ")
      }
 
     return (
@@ -43,13 +44,14 @@ export default function Form(){
 
 
                 <Button
-                onPress={() => validationImc}
-                 title="Calcular IMC"
+                onPress={() => validationImc()}
+                 title={textButton}
                  color="#61dafb"
                 
                 />
                 
            </View>
+           <ResultImc messageResultImc={message} ResultImc={imc}/>
         </View>
     );
 }
